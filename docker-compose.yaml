@@ -5,7 +5,7 @@ services:
     build: baqdauled/whatsapp_confirmation
     container_name: fastapi_app
     ports:
-      - "8000:8000"
+      - "8001:8000"
     environment:
       TZ: "UTC"
     env_file:
