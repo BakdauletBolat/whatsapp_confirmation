@@ -25,12 +25,12 @@ jobs:
       # Сборка Docker-образа
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/{{ secrets.DOCKER_IMAGE_NAME }}:latest .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest .
 
       # Пуш Docker-образа
       - name: Push Docker image to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/{{ secrets.DOCKER_IMAGE_NAME }}:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
 
       # Подключение к серверу и обновление контейнера
       - name: Deploy to Server
@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }} # Или используйте secrets.SERVER_SSH_KEY для ключа
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd /var/www/{{ secrets.DOCKER_IMAGE_NAME }}
+            cd /var/www/${{ secrets.DOCKER_IMAGE_NAME }}
             git pull
             docker compose pull # Загружаем новую версию образа
             docker compose up -d # Перезапускаем контейнеры с новой версией
