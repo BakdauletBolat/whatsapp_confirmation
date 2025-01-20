@@ -2,9 +2,7 @@ version: "3.8"
 
 services:
   fastapi_app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: baqdauled/whatsapp_confirmation
     container_name: fastapi_app
     ports:
       - "8000:8000"
